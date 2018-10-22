@@ -39,7 +39,7 @@ namespace SSTest.Service.Controllers
         /// <returns>list of products </returns>
         //[Route("api/products")]
         //[HttpGet]
-        //[ResponseType(typeof(IList<Product>))]
+        [ResponseType(typeof(IList<Product>))]
         public IList<Product> GetProducts()
         {
             try

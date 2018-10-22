@@ -12,6 +12,7 @@ using SSTest.WebClient.Helper;
 using System.IO;
 using System.Web.UI.WebControls;
 using System.Web.UI;
+using Newtonsoft.Json;
 
 namespace SSTest.WebClient.Controllers
 {
@@ -45,7 +46,7 @@ namespace SSTest.WebClient.Controllers
             }
             else
             {
-                 products = _iProductService.GetAllProducts().Where(x => x.Name.Contains(request.Search)); //Search
+                 products = _iProductService.GetAllProducts().Where(x => x.Name.ToLower().Contains(request.Search.ToLower())); //Search
             }
 
             var pagedProducts = products.ToList().Skip(request.Start).Take(request.Length); //Pagination
@@ -65,6 +66,7 @@ namespace SSTest.WebClient.Controllers
             objDataTableResponse.data = pagedProducts.ToArray();
             objDataTableResponse.error = "";
 
+          
             return Json(objDataTableResponse, JsonRequestBehavior.AllowGet);
 
 
@@ -159,6 +161,26 @@ namespace SSTest.WebClient.Controllers
                //TODO: Logger Implementation
                 return View("Error", new { code = -1, message = ex.Message });
             }
+        }
+
+        /// <summary>
+        /// To accomodate Long Json string(in this case Image binary)
+        /// </summary>
+        /// <param name="data"></param>
+        /// <param name="contentType"></param>
+        /// <param name="contentEncoding"></param>
+        /// <param name="behavior"></param>
+        /// <returns></returns>
+        protected override JsonResult Json(object data, string contentType, Encoding contentEncoding, JsonRequestBehavior behavior)
+        {
+            return new JsonResult()
+            {
+                Data = data,
+                ContentType = contentType,
+                ContentEncoding = contentEncoding,
+                JsonRequestBehavior = behavior,
+                MaxJsonLength = Int32.MaxValue
+            };
         }
     }
 }
