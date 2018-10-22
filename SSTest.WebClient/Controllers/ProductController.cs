@@ -160,5 +160,25 @@ namespace SSTest.WebClient.Controllers
                 return View("Error", new { code = -1, message = ex.Message });
             }
         }
+        
+         /// <summary>
+        /// To accomodate Long Json string(in this case Image binary)
+        /// </summary>
+        /// <param name="data"></param>
+        /// <param name="contentType"></param>
+        /// <param name="contentEncoding"></param>
+        /// <param name="behavior"></param>
+        /// <returns></returns>
+        protected override JsonResult Json(object data, string contentType, Encoding contentEncoding, JsonRequestBehavior behavior)
+        {
+            return new JsonResult()
+            {
+                Data = data,
+                ContentType = contentType,
+                ContentEncoding = contentEncoding,
+                JsonRequestBehavior = behavior,
+                MaxJsonLength = Int32.MaxValue
+            };
+        }
     }
 }
