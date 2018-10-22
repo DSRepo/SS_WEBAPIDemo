@@ -18,11 +18,11 @@ namespace SSTest.WebClient.Models.DataTable
             get
             {
 
-                return HttpContext.Current.Request.Form.GetValues("search[value]").FirstOrDefault();
+                 return Convert.ToString(HttpContext.Current.Request.Form.GetValues("search[value]")!=null? HttpContext.Current.Request.Form.GetValues("search[value]").FirstOrDefault():"");
 
             }
         }
           
-        //public DataTableSearch Search { get; set; }
+       
     }
 }
