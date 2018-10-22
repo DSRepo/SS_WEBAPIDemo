@@ -23,6 +23,6 @@ namespace SSTest.WebClient.Models.DataTable
             }
         }
           
-        //public DataTableSearch Search { get; set; }
+        
     }
 }
