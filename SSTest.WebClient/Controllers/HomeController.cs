@@ -11,6 +11,7 @@ namespace SSTest.WebClient.Controllers
         public ActionResult Index()
         {
             return View();
+            //new changes
         }
 
         public ActionResult About()
