@@ -17,10 +17,7 @@ namespace SSTest.WebClient.Controllers
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
-            //Comments
-            //coment by vijay
-            
-            //new changes for conflict1
+            //new changes made on 30/10/2018
             return View();
         }
 
