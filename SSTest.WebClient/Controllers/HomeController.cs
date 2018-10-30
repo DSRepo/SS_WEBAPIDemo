@@ -11,15 +11,16 @@ namespace SSTest.WebClient.Controllers
         public ActionResult Index()
         {
             return View();
+            //new changes
         }
 
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
-            
+            //Comments
             //coment by vijay
-            //test
-            //new changes for conflict
+            
+            //new changes for conflict1
             return View();
         }
 
